@@ -30,7 +30,8 @@ def VB(t):
     # print(exp(-t*alpha_b))
     # return (A0 - VA(t) + B0)*exp(-t*alpha_b) # + (A0 - VA(t))*exp(t*(alpha_b + alpha_a))
     # return B0*exp(-t*alpha_b) - A0*exp(-t*alpha_a) + A0*exp(-t*alpha_a*alpha_b)
-    return (A0 - VA(t) + B0)*exp(-t*alpha_b)
+    # return (A0 - VA(t) + B0)*exp(-t*alpha_b)
+    return (A0 - VA(t))*exp(-t*alpha_a*alpha_b) + B0*exp(-t*alpha_b)
 
 def V(t):
     # return A0*exp(-t*(alpha_a*alpha_b)) + B0*exp(-t*alpha_b)
