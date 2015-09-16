@@ -29,13 +29,16 @@ def VB(t):
         return B0
     # print(exp(-t*alpha_b))
     # return (A0 - VA(t) + B0)*exp(-t*alpha_b) # + (A0 - VA(t))*exp(t*(alpha_b + alpha_a))
-    return B0*exp(-t*alpha_b) - A0*exp(-t*alpha_a) + A0*exp(-t*alpha_a*alpha_b)
+    # return B0*exp(-t*alpha_b) - A0*exp(-t*alpha_a) + A0*exp(-t*alpha_a*alpha_b)
+    return (A0 - VA(t) + B0)*exp(-t*alpha_b)
 
 def V(t):
-    return A0*exp(-t*(alpha_a*alpha_b)) + B0*exp(-t*alpha_b)
+    # return A0*exp(-t*(alpha_a*alpha_b)) + B0*exp(-t*alpha_b)
+    return VA(t) + VB(t) 
 
 i=0
 
+print("%16s, %16s, %16s, %16s, %16s, %16s, %16s, %16s" % ('t', 'A', 'B', 'A+B', 'VA(t)', 'VB(t)', 'V(t)', 'A + B - V(t)'))
 while i<(Ts/dt+1):
     # leaks from A
     # A_leak = A*(1-exp(-alpha_a*dt))
@@ -44,7 +47,7 @@ while i<(Ts/dt+1):
     B_leak = B*alpha_b*dt
     if i%round(1.0/dt/10.0)==0:
         # print("%16f %16f %16f %16f %16f %16f" % (t, A, B, A+B, V(t), A + B - V(t)))
-        print("%16f, %16f, %16f, %16f, %16f, %16f" % (t, A, B, A+B, V(t), A + B - V(t)))
+        print("%16f, %16f, %16f, %16f, %16f, %16f, %16f, %16f" % (t, A, B, A+B, VA(t), VB(t), V(t), A + B - V(t)))
     B += A_leak
     A -= A_leak
     B -= B_leak
