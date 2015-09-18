@@ -65,9 +65,9 @@ def main(USE_INCORRECT= USE_INCORRECT):
     print("%16s, %16s, %16s, %16s, %16s, %16s, %16s, %16s" % ('t', 'A', 'B', 'A+B', 'VA(t)', 'VB(t)', 'V(t)', 'A + B - V(t)'))
     for i, t, A, B in numerical(A0, B0, alpha_a, alpha_b, dt):
         if t>Ts: break
+        if (not exceeded_error) and (abs(A + B - V(t)) > max_error):
+            exceeded_error = True
         if i%round(print_time/dt)==0:
-            if (not exceeded_error) and (abs(A + B - V(t)) > max_error):
-                exceeded_error = True
             print("%16f, %16f, %16f, %16f, %16f, %16f, %16f, %16f" % (t, A, B, A+B, VA(t), VB(t), V(t), A + B - V(t)))
     if exceeded_error:
         print("WARNING: THE ANALYICAL SOLUTION IS LIKELY TO BE INCORRECT")
