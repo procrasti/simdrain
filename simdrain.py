@@ -72,6 +72,8 @@ def main(USE_INCORRECT= USE_INCORRECT):
     if exceeded_error:
         print("WARNING: THE ANALYICAL SOLUTION IS LIKELY TO BE INCORRECT")
 
+def syntaxerrorhere() # DELETE THIS LINE!
+
 if __name__=="__main__":
     # main(True)
     main()
